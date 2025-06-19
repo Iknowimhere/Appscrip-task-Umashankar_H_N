@@ -1,0 +1,107 @@
+/* Updated ProductGrid.css to match new structure and badges */
+.product-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 columns typical, adjusts for screen size */
+  gap: 20px; /* Space between cards */
+  padding: 0; /* Remove padding if handled by parent .main-content */
+  font-family: Arial, sans-serif;
+}
+
+.product-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: white;
+}
+
+.product-image-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; /* Maintain aspect ratio (1:1 for square images) */
+  background-color: #f0f0f0; /* Placeholder background */
+}
+
+.product-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* or 'cover' depending on desired image behavior */
+  padding: 10px; /* Some padding around images within their box */
+}
+
+.product-status {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: black;
+  color: white;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 2px;
+  z-index: 5;
+}
+
+.product-status.out-of-stock {
+  background-color: #d9534f; /* Red for out of stock */
+}
+
+.product-details {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+}
+
+.product-name {
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+
+.product-pricing-info {
+  font-size: 13px;
+  color: #888;
+  margin-top: auto; /* Push to bottom */
+}
+
+.wishlist-icon {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 20px;
+  color: #a0a0a0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.wishlist-icon:hover {
+  color: #d9534f; /* Example hover color */
+}
+
+/* Responsive adjustments for Product Grid */
+@media (max-width: 992px) {
+  .product-grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 2-3 columns on tablets */
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .product-grid-container {
+    grid-template-columns: 1fr; /* Single column on small mobiles */
+    gap: 10px;
+  }
+  .product-image-wrapper {
+    padding-bottom: 75%; /* Adjust aspect ratio for smaller screens if needed */
+  }
+}

@@ -1,0 +1,29 @@
+/* Font Face Setup */
+@font-face {
+  font-family: 'Simplon Norm';
+  src: url('/fonts/SimplonNorm-Regular-WebS.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Apply font globally */
+body {
+  font-family: 'Simplon Norm', sans-serif;
+  background-color: #fff;
+  color: #1d1d1d;
+  line-height: 1.5;
+}
+
+/* Anchor Tag Defaults */
+a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,0 +1,42 @@
+.product-listing-page {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar-section {
+  width: 280px; /* Fixed width for sidebar */
+  flex-shrink: 0; /* Prevent sidebar from shrinking */
+  border-right: 1px solid #e0e0e0;
+  padding: 20px;
+  background-color: #f8f8f8;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.main-content {
+  flex-grow: 1; /* Main content takes remaining space */
+  padding: 20px;
+}
+
+/* When filter is hidden, main content takes full width */
+.main-content.full-width {
+  margin-left: 0;
+  padding-left: 20px; /* Adjust padding if needed */
+}
+
+/* Basic responsiveness for smaller screens */
+@media (max-width: 992px) {
+  .product-listing-page {
+    flex-direction: column; /* Stack sidebar and main content */
+  }
+
+  .sidebar-section {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 15px;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+}

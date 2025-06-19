@@ -1,29 +1,75 @@
-const Navbar = () => {
+'use client';
+import React, { useState } from 'react';
+import './Navbar.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faSearch,
+  faHeart,
+  faShoppingBag,
+  faUser,
+  faBars,
+  faTimes,
+} from '@fortawesome/free-solid-svg-icons';
+
+library.add(faSearch, faHeart, faShoppingBag, faUser, faBars, faTimes);
+
+export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <nav>
-        <div className="top">
-            <span>
-            <img src="/public/logo.svg" alt="logo" />
-        </span>
-        <h1>LOGO</h1>
-        <ul>
-            <li><a href="">Search logo</a></li>
-            <li><a href="">whislist</a></li>
-            <li><a href="">cart</a></li>
-            <li><a href="">Contact</a></li>
-            <li><a href="">Login</a></li>
-        </ul>
+    <header className="navbar">
+      <div className="navbar-container">
+        {/* Brand (logo + text) */}
+        <div className="navbar-brand">
+          <img src="/logo.svg" alt="Logo" className="navbar-logo" />
+          <span className="navbar-text-logo"><strong>LOGO</strong></span>
         </div>
-        <div className="bottom">
-            <ul>
-                <li><a href="">SHOP</a></li>
-                <li><a href="">SKILLS</a></li>
-                <li><a href="">STORIES</a></li>
-                <li><a href="">ABOUT</a></li>
-                <li><a href="">CONTACT US</a></li>
-            </ul>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="menu-toggle"
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
+        >
+          <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} />
+        </button>
+
+        {/* Desktop Right Icons */}
+        <div className={`navbar-right ${isMenuOpen ? 'active' : ''}`}>
+          <div className="icon-wrapper">
+            <FontAwesomeIcon icon={faSearch} className="icon" />
+          </div>
+          <div className="icon-wrapper">
+            <FontAwesomeIcon icon={faHeart} className="icon" />
+          </div>
+          <div className="icon-wrapper">
+            <FontAwesomeIcon icon={faShoppingBag} className="icon" />
+          </div>
+          <div className="icon-wrapper">
+            <FontAwesomeIcon icon={faUser} className="icon" />
+          </div>
+          <select className="lang-select">
+            <option>ENG</option>
+            <option>FR</option>
+            <option>ES</option>
+          </select>
         </div>
-    </nav>
-  )
+      </div>
+
+      {/* Navigation Links */}
+      <nav className={`navbar-center ${isMenuOpen ? 'active' : ''}`}>
+        <a href="#">SHOP</a>
+        <a href="#">SKILLS</a>
+        <a href="#">STORIES</a>
+        <a href="#">ABOUT</a>
+        <a href="#">CONTACT US</a>
+      </nav>
+    </header>
+  );
 }
-export default Navbar

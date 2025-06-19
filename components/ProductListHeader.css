@@ -1,0 +1,119 @@
+.product-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.item-count {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.filter-toggle {
+  font-size: 13px;
+  color: #666;
+  cursor: pointer;
+  text-decoration: none; /* No underline by default */
+}
+
+.filter-toggle:hover {
+  color: #333;
+}
+
+.filter-toggle svg {
+  margin-right: 5px;
+}
+
+.right-section {
+  position: relative;
+}
+
+.recommended-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 0;
+  color: #333;
+}
+
+.recommended-dropdown svg {
+  font-size: 12px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+  z-index: 20;
+  margin-top: 5px;
+}
+
+.dropdown-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: normal;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+.dropdown-item.selected {
+  font-weight: bold;
+}
+
+.dropdown-item .check-mark {
+  margin-right: 8px;
+  color: #000; /* Or a distinct color for the checkmark */
+}
+
+/* Basic responsiveness */
+@media (max-width: 768px) {
+  .product-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .left-section {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .right-section {
+    width: 100%;
+    text-align: right; /* Align dropdown to the right */
+  }
+
+  .recommended-dropdown {
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    left: 0; /* Align dropdown to full width or adjust as needed */
+    right: auto;
+    width: 100%;
+  }
+}
