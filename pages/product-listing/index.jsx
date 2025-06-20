@@ -7,12 +7,23 @@ import ProductGrid from '@/components/ProductGrid';
 import './ProductListingPage.css';
 
 export default function ProductListingPage() {
-  const [isFilterHidden, setIsFilterHidden] = useState(false);
-  const [selectedFilters, setSelectedFilters] = useState({});
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeMobileTab, setActiveMobileTab] = useState('products');
+  const [isFilterHidden, setIsFilterHidden] = useState(false);
+  const [selectedFilters, setSelectedFilters] = useState({});
 
-  // Fetch products from fakestoreapi
+  useEffect(() => {
+    const handleResize = () => {
+      const mobileBreakpoint = 768;
+      setIsMobile(window.innerWidth <= mobileBreakpoint);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   useEffect(() => {
     setLoading(true);
     fetch('https://fakestoreapi.com/products')
@@ -21,11 +32,21 @@ export default function ProductListingPage() {
         setProducts(data);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        setLoading(false);
+      });
   }, []);
 
-  const toggleFilterVisibility = () => {
-    setIsFilterHidden(!isFilterHidden);
+  const handleToggleFilter = () => {
+    if (isMobile) {
+      setActiveMobileTab('filter');
+    } else {
+      setIsFilterHidden(!isFilterHidden);
+    }
+  };
+
+  const handleTabChange = (tabName) => {
+    setActiveMobileTab(tabName);
   };
 
   const handleFilterChange = (category, value) => {
@@ -52,9 +73,15 @@ export default function ProductListingPage() {
     }));
   };
 
+  // Overlay close handler for mobile filter
+  const handleCloseFilter = () => {
+    setActiveMobileTab('products');
+  };
+
   return (
     <div className="product-listing-page">
-      {!isFilterHidden && (
+      {/* Desktop sidebar */}
+      {!isMobile && !isFilterHidden && (
         <aside className="sidebar-section">
           <FilterSidebar
             selectedFilters={selectedFilters}
@@ -64,16 +91,56 @@ export default function ProductListingPage() {
         </aside>
       )}
 
+      {/* Mobile filter overlay */}
+      {isMobile && activeMobileTab === 'filter' && (
+        <div className="filter-overlay" onClick={handleCloseFilter}>
+          <div
+            className="filter-sidebar"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              style={{
+                display: 'block',
+                marginBottom: '16px',
+                background: '#000',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '4px',
+                padding: '8px 16px',
+                fontWeight: 'bold',
+                width: '100%',
+                cursor: 'pointer'
+              }}
+              onClick={handleCloseFilter}
+            >
+              Close
+            </button>
+            <FilterSidebar
+              selectedFilters={selectedFilters}
+              onFilterChange={handleFilterChange}
+              onUnselectAll={handleUnselectAll}
+            />
+          </div>
+        </div>
+      )}
+
       <main className={`main-content ${isFilterHidden ? 'full-width' : ''}`}>
         <ProductListHeader
           itemCount={products.length}
           isFilterHidden={isFilterHidden}
-          onToggleFilter={toggleFilterVisibility}
+          onToggleFilter={handleToggleFilter}
+          isMobile={isMobile}
+          activeMobileTab={activeMobileTab}
+          onTabChange={handleTabChange}
         />
+
+        {/* Only show products if not in filter tab on mobile */}
         {loading ? (
-          <div>Loading...</div>
+          <div className="loading-indicator">Loading products...</div>
         ) : (
-          <ProductGrid products={products} />
+          (!isMobile || activeMobileTab === 'products') && (
+            <ProductGrid products={products} />
+          )
         )}
       </main>
     </div>

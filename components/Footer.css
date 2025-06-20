@@ -1,8 +1,10 @@
 .site-footer {
   background-color: #000;
   color: #fff;
-  font-family: Arial, sans-serif;
+  font-family: 'Simplon Norm', sans-serif;
   padding: 40px 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .footer-top {
@@ -11,7 +13,6 @@
   border-bottom: 1px solid #333;
   padding-bottom: 30px;
   margin-bottom: 30px;
-  flex-wrap: wrap;
   gap: 30px;
 }
 
@@ -29,7 +30,6 @@
   color: #fff;
 }
 
-/* Newsletter Section */
 .newsletter-section {
   max-width: 400px;
 }
@@ -77,9 +77,9 @@
   color: #000;
 }
 
-/* Contact & Currency Sections (grouped) */
 .contact-currency-section {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 20px;
   min-width: 200px;
@@ -115,7 +115,6 @@
   margin-top: 5px;
 }
 
-/* Footer Bottom - Desktop Layout */
 .footer-bottom {
   display: flex;
   flex-direction: column;
@@ -152,6 +151,10 @@
 
 .links-list li {
   margin-bottom: 10px;
+}
+
+.links-list li:last-child {
+  margin-bottom: 0;
 }
 
 .links-list a {
@@ -197,10 +200,11 @@
 }
 
 .payment-icons img {
-  height: 25px;
+  filter: none;
+  height: 28px;
   width: auto;
-  filter: grayscale(100%) brightness(200%);
-  opacity: 0.8;
+  margin-right: 8px;
+  vertical-align: middle;
 }
 
 .copyright {
@@ -212,17 +216,16 @@
   width: 100%;
 }
 
-/* --- Mobile Specific Styles (Accordion) --- */
 @media (max-width: 768px) {
   .site-footer {
-    padding: 20px 15px; /* Less padding on mobile */
+    padding: 20px 15px;
   }
 
   .footer-top {
     flex-direction: column;
-    align-items: flex-start; /* Align left */
+    align-items: flex-start;
     text-align: left;
-    gap: 30px; /* Reduced gap */
+    gap: 30px;
     padding-bottom: 20px;
     margin-bottom: 20px;
   }
@@ -247,32 +250,31 @@
   }
 
   .contact-currency-section {
-    align-items: flex-start; /* Align left */
+    align-items: flex-start;
   }
 
   .currency-note.desktop-only {
-    display: none; /* Hide currency note on mobile */
+    display: none;
   }
 
-  /* Footer Bottom - Mobile Stacked/Accordion */
   .footer-links-group {
     flex-direction: column;
-    align-items: flex-start; /* Align left */
-    gap: 0; /* Remove gap as items are now separated by borders */
-    margin-bottom: 20px; /* Adjust bottom margin */
-    border-top: 1px solid #333; /* Top border for the whole section */
+    align-items: flex-start;
+    gap: 0;
+    margin-bottom: 20px;
+    border-top: 1px solid #333;
   }
 
   .footer-links-column,
   .footer-social-payment > .footer-section {
     width: 100%;
     min-width: unset;
-    border-bottom: 1px solid #333; /* Border between accordion items */
-    padding: 15px 0; /* Vertical padding for accordion items */
+    border-bottom: 1px solid #333;
+    padding: 15px 0;
   }
-  
+
   .footer-social-payment {
-      gap: 0; /* Remove gap in this container too */
+    gap: 0;
   }
 
   .footer-heading-toggle {
@@ -280,24 +282,24 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    width: 100%; /* Ensure toggle takes full width */
-    padding-bottom: 0; /* No padding needed from original footer-heading */
-    margin-bottom: 0; /* No margin needed from original footer-heading */
+    width: 100%;
+    padding-bottom: 0;
+    margin-bottom: 0;
   }
 
   .footer-heading-toggle .footer-heading {
-    margin-bottom: 0; /* Remove default margin from heading inside toggle */
+    margin-bottom: 0;
   }
 
   .mobile-toggle-icon {
-    display: block; /* Show toggle icon on mobile */
-    font-size: 16px; /* Adjust size */
+    display: block;
+    font-size: 16px;
     color: #fff;
   }
 
   .links-list,
   .social-icons {
-    max-height: 0; /* Hidden by default */
+    max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-out, opacity 0.3s ease;
     opacity: 0;
@@ -307,26 +309,23 @@
 
   .links-list.active,
   .social-icons.active {
-    max-height: 200px; /* Sufficient height to show content */
+    max-height: 200px;
     opacity: 1;
-    padding-top: 15px; /* Add padding when active */
-    margin-top: 10px; /* Add margin when active */
+    padding-top: 15px;
+    margin-top: 10px;
   }
 
   .links-list li {
-    margin-bottom: 8px; /* Slightly less margin for tighter mobile list */
+    margin-bottom: 8px;
   }
 
   .links-list li:last-child {
     margin-bottom: 0;
   }
 
-  .social-icons {
-    justify-content: flex-start; /* Align social icons left */
-  }
-
+  .social-icons,
   .payment-icons {
-    justify-content: flex-start; /* Align payment icons left */
+    justify-content: flex-start;
   }
 
   .copyright {
@@ -336,30 +335,25 @@
   }
 }
 
-/* Hide default chevron/arrow for summary on desktop */
-.collapsible summary::-webkit-details-marker,
-.collapsible summary::marker {
+.mobile-toggle-icon {
   display: none;
 }
 
-/* Show marker only on mobile */
-@media (max-width: 600px) {
-  .collapsible summary::-webkit-details-marker,
-  .collapsible summary::marker {
-    display: revert;
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 15px 10px;
   }
-}
 
-.chevron-icon {
-  display: none;
-}
-@media (max-width: 600px) {
-  .chevron-icon {
+  .footer-heading {
+    font-size: 13px;
+  }
+
+  .newsletter-input,
+  .subscribe-button {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+  .mobile-toggle-icon {
     display: inline-block;
-    margin-left: 8px;
   }
-}
-
-.collapsible summary {
-  outline: none;
 }

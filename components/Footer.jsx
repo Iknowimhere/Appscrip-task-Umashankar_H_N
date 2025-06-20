@@ -3,7 +3,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'; // New icons for accordion toggles
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import './Footer.css';
 
 export default function Footer() {
@@ -16,12 +16,14 @@ export default function Footer() {
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-    console.log('Subscribing with:', email);
     setEmail('');
   };
 
   const toggleSection = (section) => {
-    setOpenSections(prev => ({ ...prev, [section]: !prev[section] }));
+    setOpenSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
   };
 
   return (
@@ -42,31 +44,26 @@ export default function Footer() {
             <button type="submit" className="subscribe-button">SUBSCRIBE</button>
           </form>
         </div>
-
         <div className="footer-section contact-currency-section">
           <div className="footer-section contact-section">
-            <h3 className="footer-heading">CALL US</h3> {/* Changed from CONTACT US as per mobile design */}
+            <h3 className="footer-heading">CALL US</h3>
             <p className="contact-info-item">+44 221 133 5360</p>
             <p className="contact-info-item">customercare@mettamuse.com</p>
           </div>
-
           <div className="footer-section currency-section">
             <h3 className="footer-heading">CURRENCY</h3>
             <div className="currency-selector">
-              <span className="flag-icon">🇺🇸</span> USD
+              <img src="usd.png" alt="usd" className='flag' />
+              <span className="flag-text">USD</span>
             </div>
-            {/* The note is only visible on desktop/larger screens */}
             <p className="currency-note desktop-only">
               Transactions will be completed in Euros and a currency reference is available on hover.
             </p>
           </div>
         </div>
       </div>
-
       <div className="footer-bottom">
-        {/* Accordion sections for mobile, regular columns for desktop */}
         <div className="footer-links-group">
-          {/* Metta Muse Section */}
           <div className="footer-links-column company-links">
             <div className="footer-heading-toggle" onClick={() => toggleSection('mettaMuse')}>
               <h3 className="footer-heading footer-logo-text">mettâ muse</h3>
@@ -81,8 +78,6 @@ export default function Footer() {
               <li><a href="#">EU Compliances Docs</a></li>
             </ul>
           </div>
-
-          {/* Quick Links Section */}
           <div className="footer-links-column quick-links">
             <div className="footer-heading-toggle" onClick={() => toggleSection('quickLinks')}>
               <h3 className="footer-heading">QUICK LINKS</h3>
@@ -98,9 +93,7 @@ export default function Footer() {
               <li><a href="#">Terms & Conditions</a></li>
             </ul>
           </div>
-
           <div className="footer-social-payment">
-            {/* Follow Us Section */}
             <div className="footer-section follow-us-section">
               <div className="footer-heading-toggle" onClick={() => toggleSection('followUs')}>
                 <h3 className="footer-heading">FOLLOW US</h3>
@@ -111,22 +104,19 @@ export default function Footer() {
                 <a href="#" aria-label="LinkedIn"><FontAwesomeIcon icon={faLinkedinIn} /></a>
               </div>
             </div>
-
-            {/* Accepts Section - not collapsible in mobile design, remains static */}
             <div className="footer-section accepts-section">
               <h3 className="footer-heading">mettâ muse ACCEPTS</h3>
               <div className="payment-icons">
-                <img src="/payment-icons/google-pay.png" alt="Google Pay" />
-                <img src="/payment-icons/visa.png" alt="Visa" />
-                <img src="/payment-icons/mastercard.png" alt="Mastercard" />
-                <img src="/payment-icons/amex.png" alt="American Express" />
-                <img src="/payment-icons/apple-pay.png" alt="Apple Pay" />
-                <img src="/payment-icons/shop-pay.png" alt="Shop Pay" />
+                <img src="gpay.svg" alt="Google Pay" />
+                <img src="paypal.svg" alt="PayPal" />
+                <img src="mastercard.svg" alt="Mastercard" />
+                <img src="amex.svg" alt="American Express" />
+                <img src="apple.svg" alt="Apple Pay" />
+                <img src="spay.svg" alt="Shop Pay" />
               </div>
             </div>
           </div>
         </div>
-
         <div className="copyright">
           <p>Copyright © 2023 mettamuse. All rights reserved.</p>
         </div>

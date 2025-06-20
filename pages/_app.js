@@ -1,16 +1,14 @@
-// pages/_app.js
-import '../styles/global.css'; // Make sure this path is correct
 
-// Import Font Awesome CSS and configure it if you're using it
+import '../styles/global.css'; 
+
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import { config } from '@fortawesome/fontawesome-svg-core';
-config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's imported above
+import { config,library } from '@fortawesome/fontawesome-svg-core';
+config.autoAddCss = false; 
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'; 
 
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'; // Add these imports
-// ... other imports ...
-library.add(faChevronDown, faChevronUp); // Add them to the library
+library.add(faChevronDown, faChevronUp);
 function MyApp({ Component, pageProps }) {
-  // You can add global layouts, data fetching, or shared components here
+
   return <Component {...pageProps} />;
 }
 

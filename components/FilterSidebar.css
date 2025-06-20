@@ -1,7 +1,40 @@
 .filter-sidebar {
-  padding-right: 20px; /* Space from the right edge */
-  font-family: Arial, sans-serif;
+  padding-right: 20px;
+  font-family: 'Simplon Norm', sans-serif;
+  height: 100%; 
+  overflow-y: auto; 
+  box-sizing: border-box; 
 }
+
+
+.overlay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.overlay-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.close-overlay-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #666;
+  padding: 5px; /* Add padding for easier tapping */
+}
+
+.close-overlay-button:hover {
+  color: #000;
+}
+
 
 .filter-category {
   border-bottom: 1px solid #eee;
@@ -23,7 +56,7 @@
 }
 
 .category-title input[type="checkbox"] {
-  margin-left: 10px; /* Space from label */
+  margin-left: 10px;
 }
 
 .category-toggle-icon {

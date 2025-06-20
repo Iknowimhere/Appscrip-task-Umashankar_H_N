@@ -7,7 +7,7 @@ import './FilterSidebar.css';
 
 export default function FilterSidebar({ selectedFilters, onFilterChange, onUnselectAll }) {
   const [openCategories, setOpenCategories] = useState({
-    idealFor: false, // Start collapsed as in screenshot
+    idealFor: false,
     occasion: false,
     work: false,
     fabric: false,
@@ -94,7 +94,8 @@ export default function FilterSidebar({ selectedFilters, onFilterChange, onUnsel
             {category.type === 'checkbox' ? (
               <input
                 type="checkbox"
-                checked={selectedFilters[category.id] && selectedFilters[category.id].includes(category.options[0])}
+                // FIX: Ensure selectedFilters[category.id] is always an array
+                checked={(selectedFilters[category.id] || []).includes(category.options[0])}
                 onChange={() => onFilterChange(category.id, category.options[0])}
               />
             ) : (
@@ -111,7 +112,8 @@ export default function FilterSidebar({ selectedFilters, onFilterChange, onUnsel
                 <label key={option} className="checkbox-item">
                   <input
                     type="checkbox"
-                    checked={Array.isArray(selectedFilters[category]) && selectedFilters[category].includes(option)}
+                    // FIX: Ensure selectedFilters[category.id] is always an array
+                    checked={(selectedFilters[category.id] || []).includes(option)}
                     onChange={() => onFilterChange(category.id, option)}
                   />
                   {option}

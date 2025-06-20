@@ -4,7 +4,7 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 columns typical, adjusts for screen size */
   gap: 20px; /* Space between cards */
   padding: 0; /* Remove padding if handled by parent .main-content */
-  font-family: Arial, sans-serif;
+  font-family: 'Simplon Norm', sans-serif; /* Ensure font is applied */
 }
 
 .product-card {

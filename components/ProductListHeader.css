@@ -1,15 +1,19 @@
+/* Base styles for the product list header container */
 .product-list-header {
-  display: flex;
+  display: flex; /* Default desktop display: flex for horizontal layout */
   justify-content: space-between;
   align-items: center;
   padding-bottom: 20px;
   border-bottom: 1px solid #e0e0e0;
   margin-bottom: 20px;
   font-family: Arial, sans-serif;
+  position: relative;
+  z-index: 5;
 }
 
+/* Styles for the left section of the desktop header (item count and filter toggle) */
 .left-section {
-  display: flex;
+  display: flex; /* Default desktop display */
   align-items: center;
   gap: 20px;
 }
@@ -23,7 +27,8 @@
   font-size: 13px;
   color: #666;
   cursor: pointer;
-  text-decoration: none; /* No underline by default */
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .filter-toggle:hover {
@@ -34,10 +39,12 @@
   margin-right: 5px;
 }
 
+/* Styles for the right section of the desktop header (recommended dropdown) */
 .right-section {
   position: relative;
 }
 
+/* Common styles for the "Recommended" dropdown trigger (used by both desktop and mobile) */
 .recommended-dropdown {
   display: flex;
   align-items: center;
@@ -47,12 +54,14 @@
   cursor: pointer;
   padding: 5px 0;
   color: #333;
+  position: relative;
 }
 
 .recommended-dropdown svg {
   font-size: 12px;
 }
 
+/* Styles for the dropdown menu itself */
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -63,8 +72,11 @@
   min-width: 180px;
   z-index: 20;
   margin-top: 5px;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
+/* Styles for individual items within the dropdown menu */
 .dropdown-item {
   padding: 10px 15px;
   cursor: pointer;
@@ -73,6 +85,7 @@
   color: #333;
   display: flex;
   align-items: center;
+  transition: background-color 0.2s ease;
 }
 
 .dropdown-item:hover {
@@ -85,35 +98,94 @@
 
 .dropdown-item .check-mark {
   margin-right: 8px;
-  color: #000; /* Or a distinct color for the checkmark */
+  color: #000;
 }
 
-/* Basic responsiveness */
+/* --- Mobile Specific Styles (Tab-like header) --- */
+/* This container holds the "FILTER" button and "RECOMMENDED" dropdown on mobile */
+.mobile-header-controls {
+  display: none; /* Hidden by default on desktop */
+  width: 100%; /* Take full width on mobile */
+  justify-content: center; /* Center the two "tabs" */
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid #e0e0e0; /* Bottom border for mobile header */
+  padding: 0;
+  margin: 0;
+}
+
+/* Styles for the "FILTER" button and the "RECOMMENDED" dropdown when in mobile mode */
+.filter-button,
+.mobile-header-controls .recommended-dropdown {
+  flex: 1; /* Make both elements take equal width (tab-like) */
+  text-align: center; /* Center text within each tab */
+  padding: 15px 0; /* Vertical padding to give them height */
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  background-color: transparent; /* Transparent background */
+  border: none; /* Remove default button borders */
+  border-radius: 0; /* No rounded corners for a tab-like appearance */
+}
+
+/* Vertical divider between the "FILTER" button and "RECOMMENDED" dropdown */
+.filter-button {
+  border-right: 1px solid #e0e0e0;
+}
+
+/* Style for the active tab */
+.filter-button.active-tab,
+.mobile-header-controls .recommended-dropdown.active-tab {
+  color: #000; /* Darker text for active tab */
+  /* You can add a bottom border or background change here if desired for active state */
+  border-bottom: 2px solid #000; /* Example: A strong bottom border for the active tab */
+  padding-bottom: 13px; /* Adjust padding to account for the border */
+}
+
+
+/* Adjust dropdown menu positioning for the mobile header */
+.mobile-header-controls .recommended-dropdown .dropdown-menu {
+  left: 0;
+  right: auto;
+  min-width: 100%;
+  box-sizing: border-box;
+  margin-top: 1px;
+}
+
+
+/* Media query to apply mobile-specific styles */
 @media (max-width: 768px) {
   .product-list-header {
+    /* Ensure the main header container adapts */
     flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+    align-items: center;
+    padding-bottom: 0 !important;
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
   }
 
-  .left-section {
-    width: 100%;
-    justify-content: space-between;
-  }
-
+  /* Explicitly hide the desktop-specific elements */
+  .left-section,
   .right-section {
-    width: 100%;
-    text-align: right; /* Align dropdown to the right */
+    display: none !important;
   }
 
-  .recommended-dropdown {
-    justify-content: flex-end;
-    width: 100%;
+  /* Explicitly show the mobile specific header controls */
+  .mobile-header-controls {
+    display: flex !important;
   }
+}
 
-  .dropdown-menu {
-    left: 0; /* Align dropdown to full width or adjust as needed */
-    right: auto;
-    width: 100%;
+/* Further adjustments for very small mobile devices if needed */
+@media (max-width: 480px) {
+  .filter-button,
+  .mobile-header-controls .recommended-dropdown {
+    font-size: 13px;
+    padding: 12px 0;
+  }
+  .filter-button.active-tab,
+  .mobile-header-controls .recommended-dropdown.active-tab {
+      padding-bottom: 10px; /* Adjust for smaller padding */
   }
 }
