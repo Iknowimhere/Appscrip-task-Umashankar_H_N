@@ -29,7 +29,7 @@ export default function FilterSidebar({ selectedFilters, onFilterChange, onUnsel
       id: 'customizable',
       title: 'CUSTOMIZABLE',
       type: 'checkbox',
-      options: ['Customizable'], // Single checkbox
+      options: ['Customizable'],
     },
     {
       id: 'idealFor',
@@ -41,52 +41,49 @@ export default function FilterSidebar({ selectedFilters, onFilterChange, onUnsel
       id: 'occasion',
       title: 'OCCASION',
       type: 'checkbox-group',
-      options: ['Casual', 'Party', 'Formal'], // Example options
+      options: ['Casual', 'Party', 'Formal'],
     },
     {
       id: 'work',
       title: 'WORK',
       type: 'checkbox-group',
-      options: ['Office', 'Outdoor', 'Home'], // Example options
+      options: ['Office', 'Outdoor', 'Home'],
     },
     {
       id: 'fabric',
       title: 'FABRIC',
       type: 'checkbox-group',
-      options: ['Cotton', 'Silk', 'Wool'], // Example options
+      options: ['Cotton', 'Silk', 'Wool'],
     },
     {
       id: 'segment',
       title: 'SEGMENT',
       type: 'checkbox-group',
-      options: ['Topwear', 'Bottomwear', 'Footwear'], // Example options
+      options: ['Topwear', 'Bottomwear', 'Footwear'],
     },
     {
       id: 'suitableFor',
       title: 'SUITABLE FOR',
       type: 'checkbox-group',
-      options: ['Summer', 'Winter', 'All Season'], // Example options
+      options: ['Summer', 'Winter', 'All Season'],
     },
     {
       id: 'rawMaterials',
       title: 'RAW MATERIALS',
       type: 'checkbox-group',
-      options: ['Leather', 'Plastic', 'Metal'], // Example options
+      options: ['Leather', 'Plastic', 'Metal'],
     },
     {
       id: 'pattern',
       title: 'PATTERN',
       type: 'checkbox-group',
-      options: ['Solid', 'Striped', 'Checked'], // Example options
+      options: ['Solid', 'Striped', 'Checked'],
     },
   ];
 
   return (
     <div className="filter-sidebar">
-      <div className="filter-header">
-        {/* Placeholder for "3425 ITEMS" and "HIDE FILTER" if moved here */}
-      </div>
-
+      <div className="filter-header"></div>
       {filterCategories.map(category => (
         <div key={category.id} className="filter-category">
           <div className="category-title" onClick={() => toggleCategory(category.id)}>
@@ -94,7 +91,6 @@ export default function FilterSidebar({ selectedFilters, onFilterChange, onUnsel
             {category.type === 'checkbox' ? (
               <input
                 type="checkbox"
-                // FIX: Ensure selectedFilters[category.id] is always an array
                 checked={(selectedFilters[category.id] || []).includes(category.options[0])}
                 onChange={() => onFilterChange(category.id, category.options[0])}
               />
@@ -104,7 +100,6 @@ export default function FilterSidebar({ selectedFilters, onFilterChange, onUnsel
               </div>
             )}
           </div>
-
           {openCategories[category.id] && category.type === 'checkbox-group' && (
             <div className="category-options">
               <span className="unselect-all" onClick={() => onUnselectAll(category.id)}>Unselect all</span>
@@ -112,7 +107,6 @@ export default function FilterSidebar({ selectedFilters, onFilterChange, onUnsel
                 <label key={option} className="checkbox-item">
                   <input
                     type="checkbox"
-                    // FIX: Ensure selectedFilters[category.id] is always an array
                     checked={(selectedFilters[category.id] || []).includes(option)}
                     onChange={() => onFilterChange(category.id, option)}
                   />
@@ -121,7 +115,6 @@ export default function FilterSidebar({ selectedFilters, onFilterChange, onUnsel
               ))}
             </div>
           )}
-           {/* Default "All" display when collapsed or not a checkbox group */}
           {!openCategories[category.id] && category.type === 'checkbox-group' && (
             <div className="category-default-text">All</div>
           )}

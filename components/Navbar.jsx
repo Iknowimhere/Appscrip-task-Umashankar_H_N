@@ -27,9 +27,11 @@ export default function Navbar() {
         {/* Brand (logo + text) */}
         <div className="navbar-brand">
           <img src="/logo.svg" alt="Logo" className="navbar-logo" />
-          <span className="navbar-text-logo"><strong>LOGO</strong></span>
+         
         </div>
-
+    <div className="navbar-text">
+      <span className="navbar-text-logo"><strong>LOGO</strong></span>
+    </div>
         {/* Mobile Menu Toggle */}
         <button
           className="menu-toggle"

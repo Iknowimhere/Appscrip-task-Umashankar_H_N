@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import FilterSidebar from '@/components/FilterSidebar';
-import ProductListHeader from '@/components/ProductListHeader';
-import ProductGrid from '@/components/ProductGrid';
-import './ProductListingPage.css';
+import FilterSidebar from './FilterSidebar';
+import ProductListHeader from './ProductListHeader';
+import ProductGrid from './ProductGrid';
+import './ProductListing.css';
 
-export default function ProductListingPage() {
+export default function ProductListing() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
@@ -73,14 +73,12 @@ export default function ProductListingPage() {
     }));
   };
 
-  // Overlay close handler for mobile filter
   const handleCloseFilter = () => {
     setActiveMobileTab('products');
   };
 
   return (
     <div className="product-listing-page">
-      {/* Desktop sidebar */}
       {!isMobile && !isFilterHidden && (
         <aside className="sidebar-section">
           <FilterSidebar
@@ -91,7 +89,6 @@ export default function ProductListingPage() {
         </aside>
       )}
 
-      {/* Mobile filter overlay */}
       {isMobile && activeMobileTab === 'filter' && (
         <div className="filter-overlay" onClick={handleCloseFilter}>
           <div
@@ -134,7 +131,6 @@ export default function ProductListingPage() {
           onTabChange={handleTabChange}
         />
 
-        {/* Only show products if not in filter tab on mobile */}
         {loading ? (
           <div className="loading-indicator">Loading products...</div>
         ) : (
