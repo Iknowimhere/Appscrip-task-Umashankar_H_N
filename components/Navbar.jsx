@@ -26,12 +26,12 @@ export default function Navbar() {
       <div className="navbar-container">
         {/* Brand (logo + text) */}
         <div className="navbar-brand">
-          <img src="/logo.svg" alt="Logo" className="navbar-logo" />
-         
+          <img src="metta-muse-logo.svg" alt="Metta Muse Logo" className="navbar-logo" />
+
         </div>
-    <div className="navbar-text">
-      <span className="navbar-text-logo"><strong>LOGO</strong></span>
-    </div>
+        <div className="navbar-text">
+          <span className="navbar-text-logo"><strong>LOGO</strong></span>
+        </div>
         {/* Mobile Menu Toggle */}
         <button
           className="menu-toggle"
