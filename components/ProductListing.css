@@ -59,13 +59,24 @@
   }
 
   .main-content {
-    padding: 15px;
+    padding: 0;
   }
 
-  .main-content.full-width {
-    width: 100%;
-    margin-left: 0;
-    padding-left: 15px;
+  .filter-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .filter-sidebar {
+    animation: slideIn 0.3s ease-out;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
   }
 }
 

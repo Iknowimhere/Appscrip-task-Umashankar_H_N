@@ -1,3 +1,37 @@
+# AppScrip E-commerce Project
+
+A modern e-commerce web application built with Next.js, featuring a responsive design and interactive user interface.
+
+## Features
+
+- **Responsive Navigation**: Mobile-friendly navigation bar with logo, search, and user controls
+- **Product Discovery**: Interactive product listing with filtering and sorting capabilities
+- **Product Grid**: Responsive product grid layout with wishlist functionality
+- **Filter System**: Comprehensive filtering sidebar for product refinement
+- **Newsletter Integration**: Footer with newsletter subscription and social media links
+
+## Project Structure
+
+```plaintext
+/app
+├── globals.css        # Global styles
+├── layout.js          # Root layout component
+└── page.js            # Home page component
+
+/components
+├── DiscoverSection/   # Product discovery section
+├── FilterSidebar/     # Product filtering component
+├── Footer/            # Site footer component
+├── Navbar/            # Navigation bar component
+├── ProductGrid/       # Product display grid
+├── ProductListHeader/ # Product listing controls
+└── ProductListing/    # Main product listing page
+
+/public
+├── fonts/            # Web fonts
+└── [assets]          # Images and SVG files
+```
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

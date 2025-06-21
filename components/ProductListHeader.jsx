@@ -11,7 +11,8 @@ export default function ProductListHeader({
   onToggleFilter,
   isMobile,
   activeMobileTab,
-  onTabChange
+  onTabChange,
+  onSort // Add this prop
 }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedSortOption, setSelectedSortOption] = useState('RECOMMENDED');
@@ -23,6 +24,7 @@ export default function ProductListHeader({
   const handleOptionClick = (option) => {
     setSelectedSortOption(option);
     setIsDropdownOpen(false);
+    onSort(option); // Call the sort function
   };
 
   const isFilterTabActive = isMobile && activeMobileTab === 'filter';

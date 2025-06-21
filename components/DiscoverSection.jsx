@@ -1,4 +1,3 @@
-import React from 'react';
 import './DiscoverSection.css';
 
 export default function DiscoverSection() {

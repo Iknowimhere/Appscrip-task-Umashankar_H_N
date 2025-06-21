@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import './ProductGrid.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';

@@ -97,3 +97,36 @@
   margin-top: 5px;
   padding-left: 5px;
 }
+
+
+@media (max-width: 768px) {
+  .filter-sidebar {
+    width: 100%;
+    max-width: 100%;
+    height: calc(100vh - 50px);
+    position: fixed;
+    top: 50px;
+    left: 0;
+    background: white;
+    z-index: 1000;
+    padding: 16px;
+    overflow-y: auto;
+  }
+
+  .filter-category {
+    padding: 12px 0;
+  }
+
+  .category-title {
+    font-size: 13px;
+  }
+
+  .category-options {
+    margin-top: 8px;
+  }
+
+  .checkbox-item {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+}

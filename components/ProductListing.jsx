@@ -6,9 +6,8 @@ import ProductListHeader from './ProductListHeader';
 import ProductGrid from './ProductGrid';
 import './ProductListing.css';
 
-export default function ProductListing() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function ProductListing({ initialProducts = [], onSort }) {
+  const [products, setProducts] = useState(initialProducts);
   const [isMobile, setIsMobile] = useState(false);
   const [activeMobileTab, setActiveMobileTab] = useState('products');
   const [isFilterHidden, setIsFilterHidden] = useState(false);
@@ -22,19 +21,6 @@ export default function ProductListing() {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch('https://fakestoreapi.com/products')
-      .then(res => res.json())
-      .then(data => {
-        setProducts(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
   }, []);
 
   const handleToggleFilter = () => {
@@ -75,6 +61,23 @@ export default function ProductListing() {
 
   const handleCloseFilter = () => {
     setActiveMobileTab('products');
+  };
+
+  const handleSort = (sortOption) => {
+    const sortedProducts = [...products];
+    switch (sortOption) {
+      case 'PRICE : HIGH TO LOW':
+        sortedProducts.sort((a, b) => b.price - a.price);
+        break;
+      case 'PRICE : LOW TO HIGH':
+        sortedProducts.sort((a, b) => a.price - b.price);
+        break;
+      default:
+        // For other cases (RECOMMENDED, NEWEST FIRST, POPULAR)
+        // Keep original order from API
+        return;
+    }
+    setProducts(sortedProducts);
   };
 
   return (
@@ -129,14 +132,11 @@ export default function ProductListing() {
           isMobile={isMobile}
           activeMobileTab={activeMobileTab}
           onTabChange={handleTabChange}
+          onSort={handleSort} 
         />
 
-        {loading ? (
-          <div className="loading-indicator">Loading products...</div>
-        ) : (
-          (!isMobile || activeMobileTab === 'products') && (
-            <ProductGrid products={products} />
-          )
+        {(!isMobile || activeMobileTab === 'products') && (
+          <ProductGrid products={products} />
         )}
       </main>
     </div>
